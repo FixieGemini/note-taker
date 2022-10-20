@@ -12,5 +12,15 @@
         "title": "anther heolo nots",
         "text": "hi again",
         "note_id": "ef977dd8-62f7-4b7a-8d64-12abfcce0c12"
+    },
+    {
+        "title": "new note",
+        "text": "another one",
+        "note_id": "6f54b81f-79b6-4d6e-b2aa-2db8f609440a"
+    },
+    {
+        "title": "test note",
+        "text": "tester\n",
+        "note_id": "476d2879-d4a1-4ac0-89f4-1be0dc5c09d8"
     }
 ]

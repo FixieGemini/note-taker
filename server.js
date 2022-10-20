@@ -28,13 +28,13 @@ app.get('/api/notes', (req, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
-//
+// Function to write data to JSON file
 const writeToFile = (destination, content) =>
   fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
     err ? console.error(err) : console.info(`\nData written to ${destination}`)
   );
 
-//
+// Function to read data from a file and append content
 const readAndAppend = (content, file) => {
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
@@ -47,13 +47,13 @@ const readAndAppend = (content, file) => {
     });
 };
 
-//
+// POST request to add a note
 app.post('/api/notes', (req, res) => {
-    console.log(`${req.method} request to add note recieved ${req.body}`);
+    console.info(`${req.method} request to add note recieved ${req.body}`);
   
     const { title, text } = req.body;
   
-    if (req.body) {
+    if (title && text) {
       const newNote = {
         title,
         text,
@@ -65,6 +65,27 @@ app.post('/api/notes', (req, res) => {
       console.log(`Note added successfully 🚀`)
     } else {
       res.error('Error in adding note');
+    }
+  });
+
+// Delete a note
+app.delete('/api/notes/:id', (req, res) => {
+  console.info(`${req.method} request to delete note recieved ${req.body}`);
+
+  //const { title, text } = req.body;
+  
+    if (err) {
+      res.statusMessage(400).json({ error: res.message });
+    } else if (!result.affectedRows) {
+      res.json({
+      message: 'note not found'
+      });
+    } else {
+      res.json({
+        message: 'deleted',
+        changes: result.affectedRows,
+        id: req.params.id
+      });
     }
   });
 
