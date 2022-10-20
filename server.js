@@ -72,18 +72,14 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
   console.info(`${req.method} request to delete note recieved ${req.body}`);
 
-  //const { title, text } = req.body;
+  const { title, text } = req.body;
   
     if (err) {
-      res.statusMessage(400).json({ error: res.message });
-    } else if (!result.affectedRows) {
-      res.json({
-      message: 'note not found'
-      });
+      console.error(err);
     } else {
       res.json({
         message: 'deleted',
-        changes: result.affectedRows,
+        changes: title, text,
         id: req.params.id
       });
     }
